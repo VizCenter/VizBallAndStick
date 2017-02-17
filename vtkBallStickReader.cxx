@@ -13,6 +13,7 @@
 
   =========================================================================*/
 #include "vtkBallStickReader.h"
+#include "vtkBallStickParser.h"
 
 #include "vtkDataObject.h"
 #include "vtkExecutive.h"
@@ -23,7 +24,8 @@
 #include "vtkNew.h"
 #include "vtkObjectFactory.h"
 #include "vtkPeriodicTable.h"
-#include "vtkBallStickParser.h"
+#include "vtkCMLParser.h"
+#include "config.h"
 
 #include <string>
 #include <vector>
