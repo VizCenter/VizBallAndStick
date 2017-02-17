@@ -8,6 +8,7 @@
 #include "vtkRenderWindowInteractor.h"
 #include "vtkRenderer.h"
 #include "vtkSphereSource.h"
+#include "config.h"
 
 int main(int, char *[]) {
   vtkNew<vtkBallStickReader>      source;

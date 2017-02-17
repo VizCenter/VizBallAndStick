@@ -24,6 +24,7 @@
 
 #include "vtkDomainsChemistryModule.h" // For export macro
 #include "vtkMoleculeAlgorithm.h"
+#include "config.h"
 
 class vtkMolecule;
 
