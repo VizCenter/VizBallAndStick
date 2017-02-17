@@ -72,7 +72,7 @@ int vtkBallStickReader::RequestData(
     return 1;
   }
 
-  vtkCMLParser *parser = vtkCMLParser::New();
+  vtkBallStickParser *parser = vtkBallStickParser::New();
   parser->SetDebug(this->GetDebug());
   parser->SetFileName(this->FileName);
   parser->SetTarget(output);

@@ -6,18 +6,18 @@
 #include "vtkPeriodicTable.h"
 #include <vector>
 
-class vtkCMLParser : public vtkXMLParser
+class vtkBallStickParser : public vtkXMLParser
 {
 public:
-  vtkTypeMacro(vtkCMLParser, vtkXMLParser);
-  static vtkCMLParser * New();
+  vtkTypeMacro(vtkBallStickParser, vtkXMLParser);
+  static vtkBallStickParser * New();
 
   vtkSetObjectMacro(Target, vtkMolecule);
   vtkGetObjectMacro(Target, vtkMolecule);
 
 protected:
-  vtkCMLParser();
-  ~vtkCMLParser() VTK_OVERRIDE;
+  vtkBallStickParser();
+  ~vtkBallStickParser() VTK_OVERRIDE;
   void StartElement(const char *name, const char **attr) VTK_OVERRIDE;
   void EndElement(const char *name) VTK_OVERRIDE;
 
@@ -32,8 +32,8 @@ protected:
   vtkNew<vtkPeriodicTable> pTab;
 
 private:
-  vtkCMLParser(const vtkCMLParser&) VTK_DELETE_FUNCTION;
-  void operator=(const vtkCMLParser&) VTK_DELETE_FUNCTION;
+  vtkBallStickParser(const vtkBallStickParser&) VTK_DELETE_FUNCTION;
+  void operator=(const vtkBallStickParser&) VTK_DELETE_FUNCTION;
 };
 
 #endif // VTKCMLPARSER_H

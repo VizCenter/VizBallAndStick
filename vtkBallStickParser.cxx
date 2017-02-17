@@ -1,4 +1,4 @@
-#include "vtkCMLParser.h"
+#include "vtkBallStickParser.h"
 #include "vtkObjectFactory.h"
 
 //
@@ -6,20 +6,20 @@
 //
 #include <string>
 
-vtkStandardNewMacro(vtkCMLParser);
+vtkStandardNewMacro(vtkBallStickParser);
 
-vtkCMLParser::vtkCMLParser()
+vtkBallStickParser::vtkBallStickParser()
   : vtkXMLParser(),
     Target(0)
 {
 }
 
-vtkCMLParser::~vtkCMLParser()
+vtkBallStickParser::~vtkBallStickParser()
 {
   this->SetTarget(NULL);
 }
 
-void vtkCMLParser::StartElement(const char *name, const char **attr)
+void vtkBallStickParser::StartElement(const char *name, const char **attr)
 {
   if (strcmp(name, "atom") == 0)
   {
@@ -55,16 +55,16 @@ void vtkCMLParser::StartElement(const char *name, const char **attr)
   return;
 }
 
-void vtkCMLParser::EndElement(const char *)
+void vtkBallStickParser::EndElement(const char *)
 {
 }
 
-void vtkCMLParser::NewMolecule(const char **)
+void vtkBallStickParser::NewMolecule(const char **)
 {
   this->Target->Initialize();
 }
 
-void vtkCMLParser::NewAtom(const char **attr)
+void vtkBallStickParser::NewAtom(const char **attr)
 {
   vtkAtom atom = this->Target->AppendAtom();
   int attrInd = 0;
@@ -117,7 +117,7 @@ void vtkCMLParser::NewAtom(const char **attr)
 
 }
 
-void vtkCMLParser::NewBond(const char **attr)
+void vtkBallStickParser::NewBond(const char **attr)
 {
   int attrInd = 0;
   vtkIdType atomId1 = -1;
