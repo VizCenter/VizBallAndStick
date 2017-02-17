@@ -33,7 +33,7 @@ vtkStandardNewMacro(vtkBallStickReader);
 
 //----------------------------------------------------------------------------
 vtkBallStickReader::vtkBallStickReader()
-  : FileName(NULL)
+  : FileName(NULL), BallFileName(NULL), StickFileName( NULL )
 {
   this->SetNumberOfInputPorts(0);
 }
@@ -42,6 +42,8 @@ vtkBallStickReader::vtkBallStickReader()
 vtkBallStickReader::~vtkBallStickReader()
 {
   this->SetFileName(NULL);
+  this->SetBallFileName(NULL);
+  this->SetStickFileName( NULL );
 }
 
 //----------------------------------------------------------------------------
@@ -72,14 +74,25 @@ int vtkBallStickReader::RequestData(
     return 1;
   }
 
-  vtkBallStickParser *parser = vtkBallStickParser::New();
+#ifdef CML
+  vtkCMLParser *parser = vtkCMLParser::New();
   parser->SetDebug(this->GetDebug());
   parser->SetFileName(this->FileName);
+#else
+  vtkBallStickParser *parser = vtkBallStickParser::New();
+  parser->SetDebug(this->GetDebug());
+  parser->SetBallFileName(this->BallFileName);
+  parser->SetStickFileName(this->StickFileName);
+#endif
   parser->SetTarget(output);
 
   if (!parser->Parse())
   {
+#ifdef CML
     vtkWarningMacro(<<"Cannot parse file " << this->FileName << " as CML.");
+#else
+    vtkWarningMacro(<<"Cannot parse file " << this->BallFileName << " or " << this->StickFileName << ".");
+#endif
     parser->Delete();
     return 1;
   }

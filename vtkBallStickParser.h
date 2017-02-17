@@ -15,6 +15,22 @@ public:
   vtkSetObjectMacro(Target, vtkMolecule);
   vtkGetObjectMacro(Target, vtkMolecule);
 
+  //@{
+  /**
+   * Get/Set the name of the Ball file
+   */
+  vtkSetStringMacro(BallFileName);
+  vtkGetStringMacro(BallFileName);
+  //@}
+
+    //@{
+  /**
+   * Get/Set the name of the Ball file
+   */
+  vtkSetStringMacro(StickFileName);
+  vtkGetStringMacro(StickFileName);
+  //@}
+
 protected:
   vtkBallStickParser();
   ~vtkBallStickParser() VTK_OVERRIDE;
@@ -30,6 +46,8 @@ protected:
   void NewBond(const char **attr);
 
   vtkNew<vtkPeriodicTable> pTab;
+  char *BallFileName;
+  char *StickFileName;
 
 private:
   vtkBallStickParser(const vtkBallStickParser&) VTK_DELETE_FUNCTION;

@@ -19,7 +19,12 @@ int main(int, char *[]) {
   vtkNew<vtkRenderWindowInteractor> renderWindowInteractor;
 
   // Set the source and mapper
+#ifdef CML
   source->SetFileName("porphyrin.cml");
+#else
+  source->SetBallFileName("MasaData/Ball-Nikhil0.dat");
+  source->SetBallFileName("MasaData/Throat-Nikhil0.dat");
+#endif
   mapper->SetInputConnection(source->GetOutputPort());
   mapper->UseBallAndStickSettings();
   // Put the data set into a coordinate system

@@ -51,6 +51,22 @@ public:
   vtkGetStringMacro(FileName);
   //@}
 
+  //@{
+  /**
+   * Get/Set the name of the Ball file
+   */
+  vtkSetStringMacro(BallFileName);
+  vtkGetStringMacro(BallFileName);
+  //@}
+
+    //@{
+  /**
+   * Get/Set the name of the Stick file
+   */
+  vtkSetStringMacro(StickFileName);
+  vtkGetStringMacro(StickFileName);
+  //@}
+
 protected:
   vtkBallStickReader();
   ~vtkBallStickReader() VTK_OVERRIDE;
@@ -60,6 +76,8 @@ protected:
   int FillOutputPortInformation(int, vtkInformation*) VTK_OVERRIDE;
 
   char *FileName;
+  char *BallFileName;
+  char *StickFileName;
 
 private:
   vtkBallStickReader(const vtkBallStickReader&) VTK_DELETE_FUNCTION;
