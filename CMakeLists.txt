@@ -8,8 +8,10 @@ include(${VTK_USE_FILE})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(Sphere MACOSX_BUNDLE
   main.cxx
-  vtkCMLParser.cpp
-  vtkCMLParser.h
+  vtkBallStickParser.cxx
+  vtkBallStickParser.h
+  # vtkCMLParser.cpp
+  # vtkCMLParser.h
   vtkBallStickReader.cxx
   vtkBallStickReader.h
  )

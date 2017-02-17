@@ -23,7 +23,7 @@
 #include "vtkNew.h"
 #include "vtkObjectFactory.h"
 #include "vtkPeriodicTable.h"
-#include "vtkCMLParser.h"
+#include "vtkBallStickParser.h"
 
 #include <string>
 #include <vector>
