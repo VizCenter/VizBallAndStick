@@ -6,7 +6,7 @@ PROJECT(Sphere)
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(Sphere MACOSX_BUNDLE
+add_executable(BallStick MACOSX_BUNDLE
   main.cxx
   vtkBallStickParser.cxx
   vtkBallStickParser.h
@@ -18,7 +18,7 @@ add_executable(Sphere MACOSX_BUNDLE
 
 
 if(VTK_LIBRARIES)
-  target_link_libraries(Sphere ${VTK_LIBRARIES})
+  target_link_libraries(BallStick ${VTK_LIBRARIES})
 else()
-  target_link_libraries(Sphere vtkHybrid vtkWidgets)
+  target_link_libraries(BallStick vtkHybrid vtkWidgets)
 endif()
