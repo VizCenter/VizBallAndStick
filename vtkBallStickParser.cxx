@@ -9,8 +9,8 @@
 vtkStandardNewMacro(vtkBallStickParser);
 
 vtkBallStickParser::vtkBallStickParser()
-  : vtkXMLParser(),
-    Target(0)
+    : vtkXMLParser(),
+      Target(0)
 {
 }
 
