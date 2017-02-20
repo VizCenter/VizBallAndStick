@@ -24,10 +24,10 @@ int vtkBallStickParser::Parse()
   //This function only opens the file
   FILE *ballFile;
   ballFile = fopen(this->BallFileName, "r");
-  unsigned long int id;
+  unsigned long int idBall;
   double x,y,z,r;
 
-  fprintf(ballFile,"%lu %lE %lE %lE %lE\n",id,x,y,z,r);
+  fprintf(ballFile,"%lu %lE %lE %lE %lE\n",idBall,x,y,z,r);
 
 }
 
