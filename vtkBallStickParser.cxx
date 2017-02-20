@@ -19,6 +19,18 @@ vtkBallStickParser::~vtkBallStickParser()
   this->SetTarget(NULL);
 }
 
+int vtkBallStickParser::Parse()
+{
+  //This function only opens the file
+  FILE *ballFile;
+  ballFile = fopen(this->BallFileName, "r");
+  unsigned long int id;
+  double x,y,z,r;
+
+  fprintf(ballFile,"%lu %lE %lE %lE %lE\n",id,x,y,z,r);
+
+}
+
 void vtkBallStickParser::StartElement(const char *name, const char **attr)
 {
   if (strcmp(name, "atom") == 0)
