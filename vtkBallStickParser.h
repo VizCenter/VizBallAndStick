@@ -31,6 +31,11 @@ public:
   vtkGetStringMacro(StickFileName);
   //@}
 
+  /**
+    * begin parsing
+    */
+  int Parse();
+
 protected:
   vtkBallStickParser();
   ~vtkBallStickParser() VTK_OVERRIDE;
