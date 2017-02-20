@@ -29,6 +29,10 @@ int vtkBallStickParser::Parse()
 
   fprintf(ballFile,"%lu %lE %lE %lE %lE\n",idBall,x,y,z,r);
 
+  FILE *stickFile;
+  ballFile = fopen(this->StickFileName, "r");
+
+  unsigned long int idStick;
 }
 
 void vtkBallStickParser::StartElement(const char *name, const char **attr)
