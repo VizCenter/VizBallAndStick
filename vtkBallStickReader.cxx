@@ -13,7 +13,6 @@
 
   =========================================================================*/
 #include "vtkBallStickReader.h"
-#include "vtkBallStickParser.h"
 
 #include "vtkDataObject.h"
 #include "vtkExecutive.h"
@@ -24,8 +23,13 @@
 #include "vtkNew.h"
 #include "vtkObjectFactory.h"
 #include "vtkPeriodicTable.h"
-#include "vtkCMLParser.h"
 #include "config.h"
+
+#ifdef CML
+#include "vtkCMLParser.h"
+#else
+#include "vtkBallStickParser.h"
+#endif
 
 #include <string>
 #include <vector>
@@ -114,4 +118,3 @@ void vtkBallStickReader::PrintSelf(ostream& os, vtkIndent indent)
 {
   this->Superclass::PrintSelf(os,indent);
 }
-
