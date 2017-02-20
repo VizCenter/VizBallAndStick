@@ -25,8 +25,8 @@ int main(int, char *[]) {
 #ifdef CML
   source->SetFileName("porphyrin.cml");
 #else
-  source->SetBallFileName("MasaData/Ball-Nikhil0.dat");
-  source->SetBallFileName("MasaData/Throat-Nikhil0.dat");
+  source->SetBallFileName("MasaData/ball-Nikhil0.dat");
+  source->SetStickFileName("MasaData/throat-Nikhil0.dat");
 #endif
   mapper->SetInputConnection(source->GetOutputPort());
   mapper->UseBallAndStickSettings();
