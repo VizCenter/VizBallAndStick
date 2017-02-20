@@ -10,6 +10,9 @@
 #include "vtkSphereSource.h"
 #include "config.h"
 
+/**
+ * this is the main class
+ */
 int main(int, char *[]) {
   vtkNew<vtkBallStickReader>      source;
   vtkNew<vtkMoleculeMapper>         mapper;
