@@ -18,7 +18,7 @@ vtkBallStickParser::~vtkBallStickParser()
 {
   this->SetTarget(NULL);
 }
-
+// ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
   //This function only opens the file
