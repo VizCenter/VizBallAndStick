@@ -2,9 +2,11 @@
 cmake_minimum_required(VERSION 2.8)
 
 PROJECT(BallStick)
-
+find_package(HDF5 REQUIRED)
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
+
+include_directories(${HDF5_INCLUDE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(BallStick MACOSX_BUNDLE
   main.cxx
@@ -18,8 +20,5 @@ add_executable(BallStick MACOSX_BUNDLE
  )
 
 
-if(VTK_LIBRARIES)
-  target_link_libraries(BallStick ${VTK_LIBRARIES})
-else()
-  target_link_libraries(BallStick vtkHybrid vtkWidgets)
-endif()
+target_link_libraries(BallStick ${VTK_LIBRARIES} ${HDF5_LIBRARIES})
+
