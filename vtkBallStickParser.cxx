@@ -30,12 +30,21 @@ int vtkBallStickParser::Parse()
     vtkErrorMacro(<<"Cannot open BallFile for reading.");
     return 1;
   }
-  unsigned long int idBall;
-  double x,y,z,rBall;
+  typedef struct {
+    unsigned long int id;
+    double x,y,z,radius;
+  } Ball;
+
+  Ball ball;
   int conditionBall = 1;
   while(conditionBall)
   {
-      conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",&idBall,&x,&y,&z,&rBall);
+      conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
+                             &ball.id,
+                             &ball.x,
+                             &ball.y,
+                             &ball.z,
+                             &ball.radius);
       //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
   }
 
@@ -47,12 +56,19 @@ int vtkBallStickParser::Parse()
     return 1;
   }
 
-  unsigned long int idStick, idSide1, idSide2;
-  double rStick;
+  typedef struct{
+    unsigned long int id, idSide1, idSide2;
+    double radius;
+  } Stick;
+  Stick stick;
   int conditionStick = 1;
   while (conditionStick){
-      conditionStick = fscanf(stickFile,"%lu %lu %lu %lE\n",&idStick,&idSide1,&idSide2,&rStick);
-      printf("%lu %lu %lu %lE\n",idStick,idSide1,idSide2,rStick);
+      conditionStick = fscanf(stickFile,"%lu %lu %lu %lE\n",
+                              &stick.id,
+                              &stick.idSide1,
+                              &stick.idSide2,
+                              &stick.radius);
+      //printf("%lu %lu %lu %lE\n",idStick,idSide1,idSide2,rStick);
   }
   return 1;
 }
