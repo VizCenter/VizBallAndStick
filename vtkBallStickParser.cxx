@@ -24,15 +24,37 @@ int vtkBallStickParser::Parse()
   //This function only opens the file
   FILE *ballFile;
   ballFile = fopen(this->BallFileName, "r");
-  unsigned long int idBall;
-  double x,y,z,r;
 
-  fprintf(ballFile,"%lu %lE %lE %lE %lE\n",idBall,x,y,z,r);
+  if(ballFile == NULL)
+  {
+    vtkErrorMacro(<<"Cannot open BallFile for reading.");
+    return 1;
+  }
+  unsigned long int idBall;
+  double x,y,z,rBall;
+  int conditionBall = 1;
+  while(conditionBall)
+  {
+      conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",&idBall,&x,&y,&z,&rBall);
+      //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
+  }
 
   FILE *stickFile;
-  ballFile = fopen(this->StickFileName, "r");
+  stickFile = fopen(this->StickFileName, "r");
+  if(stickFile == NULL)
+  {
+    vtkErrorMacro(<<"Cannot open StickFile for reading.");
+    return 1;
+  }
 
-  unsigned long int idStick;
+  unsigned long int idStick, idSide1, idSide2;
+  double rStick;
+  int conditionStick = 1;
+  while (conditionStick){
+      conditionStick = fscanf(stickFile,"%lu %lu %lu %lE\n",&idStick,&idSide1,&idSide2,&rStick);
+      printf("%lu %lu %lu %lE\n",idStick,idSide1,idSide2,rStick);
+  }
+  return 1;
 }
 
 void vtkBallStickParser::StartElement(const char *name, const char **attr)
