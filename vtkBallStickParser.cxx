@@ -39,6 +39,14 @@ int vtkBallStickParser::Parse()
     unsigned long int id;
     double x,y,z,r;
   } Ball;
+
+  CompType mtype1( sizeof(Ball) );
+  mtype1.insertMember( MEMBER1, HOFFSET(Ball, id), PredType::NATIVE_UINT64);
+  mtype1.insertMember( MEMBER2, HOFFSET(Ball, x),  PredType::NATIVE_DOUBLE);
+  mtype1.insertMember( MEMBER3, HOFFSET(Ball, y),  PredType::NATIVE_DOUBLE);
+  mtype1.insertMember( MEMBER4, HOFFSET(Ball, z),  PredType::NATIVE_DOUBLE);
+  mtype1.insertMember( MEMBER5, HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
+
   if(ballFile == NULL)
   {
     vtkErrorMacro(<<"Cannot open BallFile for reading.");
