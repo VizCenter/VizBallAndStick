@@ -76,7 +76,7 @@ int vtkBallStickParser::Parse()
 
   typedef struct{
     unsigned long int id, idSide1, idSide2;
-    double radius;
+    double r;
   } Stick;
   Stick stick;
   int conditionStick = 1;
