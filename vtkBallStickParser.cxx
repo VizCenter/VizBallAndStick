@@ -23,6 +23,13 @@ vtkBallStickParser::~vtkBallStickParser()
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
+  const H5std_string h5BallFileName( "ball.h5" );
+  const H5std_string DATASET_NAME( "Balls" );
+  const H5std_string MEMBER1( "id" );
+  const H5std_string MEMBER2( "x" );
+  const H5std_string MEMBER3( "y" );
+  const H5std_string MEMBER4( "z" );
+  const H5std_string MEMBER5( "r" );
 
   //This function only opens the file
   FILE *ballFile = fopen(this->BallFileName, "r");
