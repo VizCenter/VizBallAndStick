@@ -28,15 +28,15 @@ int vtkBallStickParser::Parse()
   FILE *ballFile = fopen(this->BallFileName, "r");
   H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
+  typedef struct {
+    unsigned long int id;
+    double x,y,z,r;
+  } Ball;
   if(ballFile == NULL)
   {
     vtkErrorMacro(<<"Cannot open BallFile for reading.");
     return 1;
   }
-  typedef struct {
-    unsigned long int id;
-    double x,y,z,radius;
-  } Ball;
 
   Ball ball;
   int conditionBall = 1;
