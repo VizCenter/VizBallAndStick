@@ -5,9 +5,10 @@
 // vtkCMLParser Methods
 //
 #include <string>
-#include <hdf5.h>
+#include <H5Cpp.h>
 
 vtkStandardNewMacro(vtkBallStickParser);
+using namespace H5;
 
 vtkBallStickParser::vtkBallStickParser()
     : vtkXMLParser(),
@@ -22,12 +23,11 @@ vtkBallStickParser::~vtkBallStickParser()
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
-  //Experiement with writing to HDf5
-  hid_t id = H5Fcreate("ball.h5", H5F_ACC_TRUNC,H5P_DEFAULT,H5P_DEFAULT);
 
   //This function only opens the file
   FILE *ballFile;
   ballFile = fopen(this->BallFileName, "r");
+  H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
   if(ballFile == NULL)
   {
