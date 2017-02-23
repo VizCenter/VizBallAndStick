@@ -25,8 +25,7 @@ int vtkBallStickParser::Parse()
 {
 
   //This function only opens the file
-  FILE *ballFile;
-  ballFile = fopen(this->BallFileName, "r");
+  FILE *ballFile = fopen(this->BallFileName, "r");
   H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
   if(ballFile == NULL)
