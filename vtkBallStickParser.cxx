@@ -66,8 +66,7 @@ int vtkBallStickParser::Parse()
     //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
   }
 
-  FILE *stickFile;
-  stickFile = fopen(this->StickFileName, "r");
+  FILE *stickFile = fopen(this->StickFileName, "r");
   if(stickFile == NULL)
   {
     vtkErrorMacro(<<"Cannot open StickFile for reading.");
