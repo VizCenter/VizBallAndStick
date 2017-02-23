@@ -49,13 +49,13 @@ int vtkBallStickParser::Parse()
   int conditionBall = 1;
   while(conditionBall)
   {
-      conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
-                             &ball.id,
-                             &ball.x,
-                             &ball.y,
-                             &ball.z,
-                             &ball.radius);
-      //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
+    conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
+                           &ball.id,
+                           &ball.x,
+                           &ball.y,
+                           &ball.z,
+                           &ball.r);
+    //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
   }
 
   FILE *stickFile;
