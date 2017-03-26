@@ -8,7 +8,7 @@
 #include <H5Cpp.h>
 
 vtkStandardNewMacro(vtkBallStickParser);
-using namespace H5;
+//using namespace H5;
 
 vtkBallStickParser::vtkBallStickParser()
     : vtkXMLParser(),
@@ -40,19 +40,19 @@ int vtkBallStickParser::Parse()
 
   //This function only opens the file
   FILE *ballFile = fopen(this->BallFileName, "r");
-  H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
+  // H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
   typedef struct {
     unsigned long int id;
     double x,y,z,r;
   } Ball;
 
-  CompType mtype1( sizeof(Ball) );
-  mtype1.insertMember( MEMBER1, HOFFSET(Ball, id), PredType::NATIVE_UINT64);
-  mtype1.insertMember( MEMBER2, HOFFSET(Ball, x),  PredType::NATIVE_DOUBLE);
-  mtype1.insertMember( MEMBER3, HOFFSET(Ball, y),  PredType::NATIVE_DOUBLE);
-  mtype1.insertMember( MEMBER4, HOFFSET(Ball, z),  PredType::NATIVE_DOUBLE);
-  mtype1.insertMember( MEMBER5, HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
+//  CompType mtype1( sizeof(Ball) );
+//  mtype1.insertMember( B_ID, HOFFSET(Ball, id), PredType::NATIVE_UINT64);
+//  mtype1.insertMember( B_X , HOFFSET(Ball, x),  PredType::NATIVE_DOUBLE);
+//  mtype1.insertMember( B_Y , HOFFSET(Ball, y),  PredType::NATIVE_DOUBLE);
+//  mtype1.insertMember( B_Z , HOFFSET(Ball, z),  PredType::NATIVE_DOUBLE);
+//  mtype1.insertMember( B_R , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
 
   if(ballFile == NULL)
   {
@@ -88,6 +88,13 @@ int vtkBallStickParser::Parse()
   int conditionStick = 1;
   while (conditionStick){
       conditionStick = fscanf(stickFile,"%lu %lu %lu %lE\n",
+
+//  CompType stype( sizeof(Stick) );
+//  stype.insertMember( S_ID      , HOFFSET(Ball, id), PredType::NATIVE_UINT64);
+//  stype.insertMember( S_IDSide1 , HOFFSET(Ball, x),  PredType::NATIVE_UINT64);
+//  stype.insertMember( S_IDSide2 , HOFFSET(Ball, y),  PredType::NATIVE_UINT64);
+//  stype.insertMember( S_R       , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
+
                               &stick.id,
                               &stick.idSide1,
                               &stick.idSide2,
