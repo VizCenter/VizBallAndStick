@@ -67,6 +67,10 @@ int vtkBallStickParser::Parse()
   fseek(ballFile,0,SEEK_END);
   ballFileLength = ftell(ballFile);
   fseek(ballFile,0,SEEK_SET);
+
+  char ballBuffer[ballFileLength];
+  fread(ballBuffer,ballFileLength,1,ballFile);
+
   {
     conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
                            &ball.id,
