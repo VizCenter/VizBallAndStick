@@ -78,8 +78,6 @@ int vtkBallStickParser::Parse()
   // const H5std_string S_IDSide2( "idSide2" );
   // const H5std_string S_R( "r" );
 
-  //This function only opens the file
-  FILE *ballFile = fopen(this->BallFileName, "r");
   // H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
 
@@ -89,6 +87,15 @@ int vtkBallStickParser::Parse()
 //  mtype1.insertMember( B_Y , HOFFSET(Ball, y),  PredType::NATIVE_DOUBLE);
 //  mtype1.insertMember( B_Z , HOFFSET(Ball, z),  PredType::NATIVE_DOUBLE);
 //  mtype1.insertMember( B_R , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
+
+//  CompType stype( sizeof(Stick) );
+//  stype.insertMember( S_ID      , HOFFSET(Ball, id), PredType::NATIVE_UINT64);
+//  stype.insertMember( S_IDSide1 , HOFFSET(Ball, x),  PredType::NATIVE_UINT64);
+//  stype.insertMember( S_IDSide2 , HOFFSET(Ball, y),  PredType::NATIVE_UINT64);
+//  stype.insertMember( S_R       , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
+
+  //This function only opens the file
+  FILE *ballFile = fopen(this->BallFileName, "r");
 
   if(ballFile == NULL)
   {
@@ -125,14 +132,6 @@ int vtkBallStickParser::Parse()
     vtkErrorMacro(<<"Cannot open StickFile for reading.");
     return 1;
   }
-
-
-
-//  CompType stype( sizeof(Stick) );
-//  stype.insertMember( S_ID      , HOFFSET(Ball, id), PredType::NATIVE_UINT64);
-//  stype.insertMember( S_IDSide1 , HOFFSET(Ball, x),  PredType::NATIVE_UINT64);
-//  stype.insertMember( S_IDSide2 , HOFFSET(Ball, y),  PredType::NATIVE_UINT64);
-//  stype.insertMember( S_R       , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
 
   int stickFileLength = getSizeOfFile( stickFile );
   char stickBuffer[stickFileLength];
