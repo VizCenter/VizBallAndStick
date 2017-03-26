@@ -127,7 +127,7 @@ int vtkBallStickParser::Parse()
   char stickBuffer[stickFileLength];
   fread(stickBuffer,stickFileLength,1,stickFile);
 
-  stickElementsRead =0;
+  int stickElementsRead =0;
   while(stickElementsRead < stickFileLength)
   {
       sscanf(stickBuffer+stickElementsRead,"%lu %lu %lu %lE\n",
