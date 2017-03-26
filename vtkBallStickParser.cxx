@@ -20,6 +20,18 @@ vtkBallStickParser::~vtkBallStickParser()
 {
   this->SetTarget(NULL);
 }
+
+// ----------------------------------------------------------------------------
+int getSizeOfFile( File* file )
+{
+  int length;
+
+  fseek(file,0,SEEK_END);
+  length = ftell(file);
+  fseek(file,0,SEEK_SET);
+  return length;
+
+}
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
