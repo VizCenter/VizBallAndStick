@@ -61,8 +61,7 @@ int vtkBallStickParser::Parse()
   }
 
   Ball ball;
-  int conditionBall = 1;
-  while(conditionBall)
+
   int ballFileLength;
   fseek(ballFile,0,SEEK_END);
   ballFileLength = ftell(ballFile);
@@ -71,15 +70,23 @@ int vtkBallStickParser::Parse()
   char ballBuffer[ballFileLength];
   fread(ballBuffer,ballFileLength,1,ballFile);
 
+  int ballElementsRead =0;
+  while(ballElementsRead < ballFileLength)
   {
-    conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
+    sscanf(ballBuffer+ballElementsRead,"%lu %lE %lE %lE %lE\n",
                            &ball.id,
                            &ball.x,
                            &ball.y,
                            &ball.z,
                            &ball.r);
+    ballElementsRead += 1+ strlen(strtok(ballBuffer+ballElementsRead,"\n"));
+
+    std::cout <<  "size read = " << ballElementsRead << " of " << ballFileLength << std::endl;
+
     //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
   }
+
+  printf("DONE reading ball file\n");
 
   FILE *stickFile = fopen(this->StickFileName, "r");
   if(stickFile == NULL)
