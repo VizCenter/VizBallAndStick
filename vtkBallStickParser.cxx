@@ -22,7 +22,7 @@ vtkBallStickParser::~vtkBallStickParser()
 }
 
 // ----------------------------------------------------------------------------
-int getSizeOfFile( File* file )
+int getSizeOfFile( FILE* file )
 {
   int length;
 
