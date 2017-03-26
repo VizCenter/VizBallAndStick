@@ -61,8 +61,9 @@ typedef struct
 } Stick;
 
 // ----------------------------------------------------------------------------
-int vtkBallStickParser::Parse()
-{
+// Experiemnts with HDF5
+// int vtkBallStickParser::Parse()
+// {
   // const H5std_string h5BallFileName( "ball.h5" );
   // const H5std_string BALLS_DATASET_NAME( "Balls" );
   // const H5std_string B_ID( "id" );
@@ -94,6 +95,11 @@ int vtkBallStickParser::Parse()
 //  stype.insertMember( S_IDSide2 , HOFFSET(Ball, y),  PredType::NATIVE_UINT64);
 //  stype.insertMember( S_R       , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
 
+// }
+
+// ----------------------------------------------------------------------------
+int vtkBallStickParser::Parse()
+{
   //This function only opens the file
   FILE *ballFile = fopen(this->BallFileName, "r");
 
