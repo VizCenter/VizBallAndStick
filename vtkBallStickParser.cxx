@@ -96,28 +96,27 @@ int vtkBallStickParser::Parse()
     return 1;
   }
 
-  Ball ball;
+
 
   int ballFileLength = getSizeOfFile( ballFile );
   char ballBuffer[ballFileLength];
   fread(ballBuffer,ballFileLength,1,ballFile);
 
+  int totalBallElements = getTotalLines( ballBuffer, ballFileLength );
+  Ball ball [totalBallElements];
+
   int ballElementsRead =0;
-  while(ballElementsRead < ballFileLength)
+  for ( int i=0; i < totalBallElements; i++)
   {
     sscanf(ballBuffer+ballElementsRead,"%lu %lE %lE %lE %lE\n",
-                           &ball.id,
-                           &ball.x,
-                           &ball.y,
-                           &ball.z,
-                           &ball.r);
+                           &ball[i].id,
+                           &ball[i].x,
+                           &ball[i].y,
+                           &ball[i].z,
+                           &ball[i].r);
     ballElementsRead += 1+ strlen(strtok(ballBuffer+ballElementsRead,"\n"));
-
-    std::cout <<  "size read = " << ballElementsRead << " of " << ballFileLength << std::endl;
-
-    //printf("%lu %lE %lE %lE %lE\n",idBall,x,y,z,rBall);
   }
-
+  std::cout <<  "size read = " << ballElementsRead << " of " << ballFileLength << std::endl;
   printf("DONE reading ball file\n");
 
   FILE *stickFile = fopen(this->StickFileName, "r");
@@ -127,7 +126,7 @@ int vtkBallStickParser::Parse()
     return 1;
   }
 
-  Stick stick;
+
 
 //  CompType stype( sizeof(Stick) );
 //  stype.insertMember( S_ID      , HOFFSET(Ball, id), PredType::NATIVE_UINT64);
@@ -139,19 +138,20 @@ int vtkBallStickParser::Parse()
   char stickBuffer[stickFileLength];
   fread(stickBuffer,stickFileLength,1,stickFile);
 
+  int totalStickElements = getTotalLines( stickBuffer, stickFileLength );
+  Stick stick[totalStickElements];
+
   int stickElementsRead =0;
-  while(stickElementsRead < stickFileLength)
+  for (int i = 0; i < totalStickElements; i++)
   {
       sscanf(stickBuffer+stickElementsRead,"%lu %lu %lu %lE\n",
-                              &stick.id,
-                              &stick.idSide1,
-                              &stick.idSide2,
-                              &stick.r);
+                              &stick[i].id,
+                              &stick[i].idSide1,
+                              &stick[i].idSide2,
+                              &stick[i].r );
       stickElementsRead += 1+ strlen(strtok(stickBuffer+stickElementsRead,"\n"));
-      std::cout <<  "size read = " << stickElementsRead << " of " << stickFileLength << std::endl;
-
-      //printf("%lu %lu %lu %lE\n",idStick,idSide1,idSide2,rStick);
   }
+  std::cout <<  "size read = " << stickElementsRead << " of " << stickFileLength << std::endl;
   printf("DONE reading stick file\n");
 
   return 1;
