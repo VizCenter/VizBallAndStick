@@ -33,6 +33,18 @@ int getSizeOfFile( FILE* file )
 }
 
 // ----------------------------------------------------------------------------
+int getTotalLines( char* buffer, int bufferSize )
+{
+  int linesRead =0, totalLines =0;
+  while(linesRead < bufferSize)
+  {
+    totalLines++;
+    linesRead += 1+ strlen(strtok(buffer+linesRead,"\n"));
+  }
+  return totalLines;
+}
+
+// ----------------------------------------------------------------------------
 // Ball structure
 typedef struct
 {
