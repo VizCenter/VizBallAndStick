@@ -30,8 +30,24 @@ int getSizeOfFile( FILE* file )
   length = ftell(file);
   fseek(file,0,SEEK_SET);
   return length;
-
 }
+
+// ----------------------------------------------------------------------------
+// Ball structure
+typedef struct
+{
+  unsigned long int id;
+  double x,y,z,r;
+} Ball;
+
+// ----------------------------------------------------------------------------
+// Stick structure
+typedef struct
+{
+  unsigned long int id, idSide1, idSide2;
+  double r;
+} Stick;
+
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
@@ -54,10 +70,6 @@ int vtkBallStickParser::Parse()
   FILE *ballFile = fopen(this->BallFileName, "r");
   // H5File* h5Ball = new H5File(h5BallFileName, H5F_ACC_TRUNC);
 
-  typedef struct {
-    unsigned long int id;
-    double x,y,z,r;
-  } Ball;
 
 //  CompType mtype1( sizeof(Ball) );
 //  mtype1.insertMember( B_ID, HOFFSET(Ball, id), PredType::NATIVE_UINT64);
@@ -103,10 +115,6 @@ int vtkBallStickParser::Parse()
     return 1;
   }
 
-  typedef struct{
-    unsigned long int id, idSide1, idSide2;
-    double r;
-  } Stick;
   Stick stick;
 
 //  CompType stype( sizeof(Stick) );
