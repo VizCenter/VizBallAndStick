@@ -100,9 +100,6 @@ int vtkBallStickParser::Parse()
     double r;
   } Stick;
   Stick stick;
-  int conditionStick = 1;
-  while (conditionStick){
-      conditionStick = fscanf(stickFile,"%lu %lu %lu %lE\n",
 
 //  CompType stype( sizeof(Stick) );
 //  stype.insertMember( S_ID      , HOFFSET(Ball, id), PredType::NATIVE_UINT64);
@@ -117,12 +114,22 @@ int vtkBallStickParser::Parse()
 
   char stickBuffer[stickFileLength];
   fread(stickBuffer,stickFileLength,1,stickFile);
+
+  stickElementsRead =0;
+  while(stickElementsRead < stickFileLength)
+  {
+      sscanf(stickBuffer+stickElementsRead,"%lu %lu %lu %lE\n",
                               &stick.id,
                               &stick.idSide1,
                               &stick.idSide2,
-                              &stick.radius);
+                              &stick.r);
+      stickElementsRead += 1+ strlen(strtok(stickBuffer+stickElementsRead,"\n"));
+      std::cout <<  "size read = " << stickElementsRead << " of " << stickFileLength << std::endl;
+
       //printf("%lu %lu %lu %lE\n",idStick,idSide1,idSide2,rStick);
   }
+  printf("DONE reading stick file\n");
+
   return 1;
 }
 
