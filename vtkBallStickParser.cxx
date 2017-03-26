@@ -115,11 +115,7 @@ int vtkBallStickParser::Parse()
 //  stype.insertMember( S_IDSide2 , HOFFSET(Ball, y),  PredType::NATIVE_UINT64);
 //  stype.insertMember( S_R       , HOFFSET(Ball, r),  PredType::NATIVE_DOUBLE);
 
-  int stickFileLength;
-  fseek(ballFile,0,SEEK_END);
-  stickFileLength = ftell(stickFile);
-  fseek(stickFile,0,SEEK_SET);
-
+  int stickFileLength = getSizeOfFile( stickFile );
   char stickBuffer[stickFileLength];
   fread(stickBuffer,stickFileLength,1,stickFile);
 
