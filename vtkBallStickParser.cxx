@@ -23,20 +23,20 @@ vtkBallStickParser::~vtkBallStickParser()
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
-  const H5std_string h5BallFileName( "ball.h5" );
-  const H5std_string BALLS_DATASET_NAME( "Balls" );
-  const H5std_string B_ID( "id" );
-  const H5std_string B_X( "x" );
-  const H5std_string B_Y( "y" );
-  const H5std_string B_Z( "z" );
-  const H5std_string B_R( "r" );
+  // const H5std_string h5BallFileName( "ball.h5" );
+  // const H5std_string BALLS_DATASET_NAME( "Balls" );
+  // const H5std_string B_ID( "id" );
+  // const H5std_string B_X( "x" );
+  // const H5std_string B_Y( "y" );
+  // const H5std_string B_Z( "z" );
+  // const H5std_string B_R( "r" );
 
-  const H5std_string h5StickFileName( "Stick.h5" );
-  const H5std_string SITCKS_DATASET_NAME( "Sticks" );
-  const H5std_string S_ID( "id" );
-  const H5std_string S_IDSide1( "idSide1" );
-  const H5std_string S_IDSide2( "idSide2" );
-  const H5std_string S_R( "r" );
+  // const H5std_string h5StickFileName( "Stick.h5" );
+  // const H5std_string SITCKS_DATASET_NAME( "Sticks" );
+  // const H5std_string S_ID( "id" );
+  // const H5std_string S_IDSide1( "idSide1" );
+  // const H5std_string S_IDSide2( "idSide2" );
+  // const H5std_string S_R( "r" );
 
   //This function only opens the file
   FILE *ballFile = fopen(this->BallFileName, "r");
