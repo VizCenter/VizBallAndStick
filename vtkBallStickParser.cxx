@@ -107,6 +107,9 @@ int vtkBallStickParser::Parse()
   fseek(ballFile,0,SEEK_END);
   stickFileLength = ftell(stickFile);
   fseek(stickFile,0,SEEK_SET);
+
+  char stickBuffer[stickFileLength];
+  fread(stickBuffer,stickFileLength,1,stickFile);
                               &stick.id,
                               &stick.idSide1,
                               &stick.idSide2,
