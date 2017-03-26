@@ -63,6 +63,10 @@ int vtkBallStickParser::Parse()
   Ball ball;
   int conditionBall = 1;
   while(conditionBall)
+  int ballFileLength;
+  fseek(ballFile,0,SEEK_END);
+  ballFileLength = ftell(ballFile);
+  fseek(ballFile,0,SEEK_SET);
   {
     conditionBall = fscanf(ballFile,"%lu %lE %lE %lE %lE\n",
                            &ball.id,
