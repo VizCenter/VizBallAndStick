@@ -74,11 +74,7 @@ int vtkBallStickParser::Parse()
 
   Ball ball;
 
-  int ballFileLength;
-  fseek(ballFile,0,SEEK_END);
-  ballFileLength = ftell(ballFile);
-  fseek(ballFile,0,SEEK_SET);
-
+  int ballFileLength = getSizeOfFile( ballFile );
   char ballBuffer[ballFileLength];
   fread(ballBuffer,ballFileLength,1,ballFile);
 
