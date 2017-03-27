@@ -119,6 +119,10 @@ int vtkBallStickParser::Parse()
   Ball ball [totalBallElements];
 
   int ballElementsRead =0;
+
+  double minx , maxx, miny, maxy, minz, maxz;
+  minx=miny=minz=maxx=maxy=maxz =0.0;
+
   for ( int i=0; i < totalBallElements; i++)
   {
     sscanf(ballBuffer+ballElementsRead,"%lu %lE %lE %lE %lE\n",
@@ -127,8 +131,18 @@ int vtkBallStickParser::Parse()
                            &ball[i].y,
                            &ball[i].z,
                            &ball[i].r);
+    if( ball[i].x < minx ) minx = ball[i].x;
+    if( ball[i].x > maxx ) maxx = ball[i].x;
+    if( ball[i].y < miny ) miny = ball[i].y;
+    if( ball[i].y > maxy ) maxy = ball[i].y;
+    if( ball[i].z < minz ) minz = ball[i].z;
+    if( ball[i].z > maxz ) maxz = ball[i].z;
+
     ballElementsRead += 1+ strlen(strtok(ballBuffer+ballElementsRead,"\n"));
   }
+  std::cout << minx << "," << maxx << std::endl;
+  std::cout << miny << "," << maxy << std::endl;
+  std::cout << minz << "," << maxz << std::endl;
   std::cout <<  "size read = " << ballElementsRead << " of " << ballFileLength << std::endl;
   printf("DONE reading ball file\n");
 
