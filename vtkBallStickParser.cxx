@@ -100,6 +100,8 @@ typedef struct
 // ----------------------------------------------------------------------------
 int vtkBallStickParser::Parse()
 {
+  this->Target->Initialize();
+
   //This function only opens the file
   FILE *ballFile = fopen(this->BallFileName, "r");
 
@@ -108,8 +110,6 @@ int vtkBallStickParser::Parse()
     vtkErrorMacro(<<"Cannot open BallFile for reading.");
     return 1;
   }
-
-
 
   int ballFileLength = getSizeOfFile( ballFile );
   char ballBuffer[ballFileLength];
