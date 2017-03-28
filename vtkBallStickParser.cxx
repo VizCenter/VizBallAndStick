@@ -1,6 +1,6 @@
 #include "vtkBallStickParser.h"
 #include "vtkObjectFactory.h"
-
+#include "vtkDoubleArray.h"
 //
 // vtkCMLParser Methods
 //
@@ -158,6 +158,7 @@ int vtkBallStickParser::Parse()
 
     radii->SetTypedComponent(i,0,ball[i].r*scaleFactor);
   }
+  this->Target->GetVertexData()->AddArray(radii.Get());
   std::cout << minx << "," << maxx << std::endl;
   std::cout << miny << "," << maxy << std::endl;
   std::cout << minz << "," << maxz << std::endl;
