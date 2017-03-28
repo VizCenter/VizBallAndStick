@@ -139,6 +139,8 @@ int vtkBallStickParser::Parse()
     if( ball[i].z > maxz ) maxz = ball[i].z;
 
     ballElementsRead += 1+ strlen(strtok(ballBuffer+ballElementsRead,"\n"));
+
+    vtkAtom atom = this->Target->AppendAtom();
   }
   std::cout << minx << "," << maxx << std::endl;
   std::cout << miny << "," << maxy << std::endl;
