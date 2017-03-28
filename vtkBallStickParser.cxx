@@ -133,6 +133,7 @@ int vtkBallStickParser::Parse()
   unsigned char green[3] = {0, 255, 0};
   unsigned char blue[3] = {0, 0, 255};
 
+  printf("total ball elements = %d\n",totalBallElements);
   for ( int i=0; i < totalBallElements; i++)
   {
     sscanf(ballBuffer+ballElementsRead,"%lu %lE %lE %lE %lE\n",
@@ -192,6 +193,8 @@ int vtkBallStickParser::Parse()
   fread(stickBuffer,stickFileLength,1,stickFile);
 
   int totalStickElements = getTotalLines( stickBuffer, stickFileLength );
+  printf("total stick elements = %d\n",totalStickElements);
+
   Stick stick[totalStickElements];
 
   int stickElementsRead =0;
