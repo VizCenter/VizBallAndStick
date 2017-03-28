@@ -1,6 +1,8 @@
 #include "vtkBallStickParser.h"
 #include "vtkObjectFactory.h"
 #include "vtkDoubleArray.h"
+#include "vtkDataSetAttributes.h"
+#include "vtkPolyDataMapper.h"
 //
 // vtkCMLParser Methods
 //
@@ -157,6 +159,19 @@ int vtkBallStickParser::Parse()
     pos[2] = ball[i].z*scaleFactor;
 
     radii->SetTypedComponent(i,0,ball[i].r*scaleFactor);
+
+    std::string id = std::to_string( ball[i].id );
+    atom.SetAtomicNumber(ball[i].r*scaleFactor);    // The radius is passed
+                                                    // but for some reason the
+                                                    // atomoic number also
+                                                    // seems to be
+                                                    // important. The entire
+                                                    // thing just turns to one
+                                                    // colour (blue) without
+                                                    // this.
+    atom.SetPosition(pos);
+    size_t atomId = static_cast<size_t>(atom.GetId());
+    this->AtomNames[id] = atomId;
   }
   this->Target->GetVertexData()->AddArray(radii.Get());
   std::cout << minx << "," << maxx << std::endl;
