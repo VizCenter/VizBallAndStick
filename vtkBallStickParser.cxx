@@ -203,6 +203,9 @@ int vtkBallStickParser::Parse()
                               &stick[i].idSide2,
                               &stick[i].r );
       stickElementsRead += 1+ strlen(strtok(stickBuffer+stickElementsRead,"\n"));
+      this->Target->AppendBond(this->AtomNames[std::to_string( stick[i].idSide1 )],
+                               this->AtomNames[std::to_string( stick[i].idSide2 )],
+                               1);
   }
   std::cout <<  "size read = " << stickElementsRead << " of " << stickFileLength << std::endl;
   printf("DONE reading stick file\n");
