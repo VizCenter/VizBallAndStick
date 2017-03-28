@@ -2,11 +2,12 @@
 #include "vtkBallStickReader.h"
 #include "vtkCamera.h"
 #include "vtkMolecule.h"
-#include "vtkMoleculeMapper.h"
+#include "vtkOpenGLMoleculeMapper.h"
+//#include "vtkMoleculeMapper.h"
 #include "vtkNew.h"
 #include "vtkRenderWindow.h"
 #include "vtkRenderWindowInteractor.h"
-#include "vtkRenderer.h"
+#include "vtkOpenGLRenderer.h"
 #include "vtkSphereSource.h"
 #include "config.h"
 
@@ -15,9 +16,9 @@
  */
 int main(int, char *[]) {
   vtkNew<vtkBallStickReader>      source;
-  vtkNew<vtkMoleculeMapper>         mapper;
+  vtkNew<vtkOpenGLMoleculeMapper>         mapper;
   vtkNew<vtkActor>                  actor;
-  vtkNew<vtkRenderer>               renderer;
+  vtkNew<vtkOpenGLRenderer>               renderer;
   vtkNew<vtkRenderWindow>           renderWindow;
   vtkNew<vtkRenderWindowInteractor> renderWindowInteractor;
 
@@ -30,6 +31,15 @@ int main(int, char *[]) {
 #endif
   mapper->SetInputConnection(source->GetOutputPort());
   mapper->UseBallAndStickSettings();
+  mapper->SetAtomicRadiusTypeToCustomArrayRadius();
+  mapper->SetColorModeToDirectScalars();
+  mapper->SetColorModeToDefault();
+  mapper->SetColorModeToMapScalars();
+  mapper->ScalarVisibilityOn();
+  mapper->SetScalarModeToUsePointFieldData();
+  mapper->SetBondRadius(.15);
+  mapper->SelectColorArray("colors");
+
   // Put the data set into a coordinate system
   actor->SetMapper(mapper.GetPointer());
 
@@ -38,7 +48,7 @@ int main(int, char *[]) {
   renderWindowInteractor->SetRenderWindow(renderWindow.GetPointer());
   // Add the actor to the scene
   renderer->AddActor(actor.GetPointer());
-  renderer->SetBackground(.3, .6, .3); // Background color green
+  renderer->SetBackground(.3, .3, .3); // Background color green
   // Render and interact
   renderWindow->Render();
   renderWindowInteractor->Start();

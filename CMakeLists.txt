@@ -17,6 +17,18 @@ add_executable(BallStick MACOSX_BUNDLE
   vtkCMLParser.h
   vtkBallStickReader.cxx
   vtkBallStickReader.h
+  vtkMolecule.cxx
+  vtkMolecule.h
+  vtkAtom.cxx
+  vtkAtom.h
+  vtkBond.cxx
+  vtkBond.h
+  vtkMoleculeAlgorithm.cxx
+  vtkMoleculeAlgorithm.h
+  vtkMoleculeMapper.cxx
+  vtkMoleculeMapper.h
+  vtkOpenGLMoleculeMapper.cxx
+  vtkOpenGLMoleculeMapper.h
  )
 
 
