@@ -123,6 +123,14 @@ int vtkBallStickParser::Parse()
   double minx , maxx, miny, maxy, minz, maxz;
   minx=miny=minz=maxx=maxy=maxz =0.0;
 
+  vtkNew<vtkDoubleArray> radii;
+  radii->SetNumberOfTuples(totalBallElements);
+  radii->SetName("radii");
+
+  unsigned char red[3] = {255, 0, 0};
+  unsigned char green[3] = {0, 255, 0};
+  unsigned char blue[3] = {0, 0, 255};
+
   for ( int i=0; i < totalBallElements; i++)
   {
     sscanf(ballBuffer+ballElementsRead,"%lu %lE %lE %lE %lE\n",
@@ -141,6 +149,14 @@ int vtkBallStickParser::Parse()
     ballElementsRead += 1+ strlen(strtok(ballBuffer+ballElementsRead,"\n"));
 
     vtkAtom atom = this->Target->AppendAtom();
+    float pos[3];
+    float scaleFactor = 100000;
+
+    pos[0] = ball[i].x*scaleFactor;
+    pos[1] = ball[i].y*scaleFactor;
+    pos[2] = ball[i].z*scaleFactor;
+
+    radii->SetTypedComponent(i,0,ball[i].r*scaleFactor);
   }
   std::cout << minx << "," << maxx << std::endl;
   std::cout << miny << "," << maxy << std::endl;
