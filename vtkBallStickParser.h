@@ -4,7 +4,7 @@
 #include "vtkMolecule.h"
 #include "vtkNew.h"
 #include "vtkPeriodicTable.h"
-#include <vector>
+#include <map>
 
 class vtkBallStickParser : public vtkXMLParser
 {
@@ -42,7 +42,7 @@ protected:
   void StartElement(const char *name, const char **attr) VTK_OVERRIDE;
   void EndElement(const char *name) VTK_OVERRIDE;
 
-  std::vector<std::string> AtomNames;
+  std::map<std::string,size_t > AtomNames;
 
   vtkMolecule *Target;
 

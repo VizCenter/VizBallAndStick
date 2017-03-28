@@ -265,12 +265,7 @@ void vtkBallStickParser::NewAtom(const char **attr)
 
   // Store name for lookups
   size_t atomId = static_cast<size_t>(atom.GetId());
-  if (atomId >= this->AtomNames.size())
-  {
-    this->AtomNames.resize(atomId + 1);
-  }
-
-  this->AtomNames[atomId] = std::string(id);
+  this->AtomNames[std::string( id )] = atomId;
 
   vtkDebugMacro(<< "Added atom #" << atomId << " ('" << id << "') ");
 
@@ -296,33 +291,9 @@ void vtkBallStickParser::NewBond(const char **attr)
       {
         vtkIdType currentAtomId;
         bool found = false;
-        for (currentAtomId = 0;
-             currentAtomId < static_cast<vtkIdType>(this->AtomNames.size());
-             ++currentAtomId)
-        {
-          if (this->AtomNames[currentAtomId].compare(nameChar) == 0)
-          {
-            found = true;
-            break;
-          }
-        }
-        if (!found)
-        {
-          // Create list of known atom names:
-          std::string allAtomNames ("");
-          for (size_t i = 0; i < this->AtomNames.size(); ++i)
-          {
-            allAtomNames += this->AtomNames[i];
-            allAtomNames.push_back(' ');
-          }
-          vtkWarningMacro(<< "NewBond(): unknown atom name '"
-                          << nameChar << "'. Known atoms:\n"
-                          << allAtomNames.c_str());
+        currentAtomId = this->AtomNames[std::string( nameChar )];
 
-          nameChar = strtok(NULL, " ");
-          continue;
-        }
-        else if (atomId1 == -1)
+        if (atomId1 == -1)
         {
           atomId1 = currentAtomId;
         }
